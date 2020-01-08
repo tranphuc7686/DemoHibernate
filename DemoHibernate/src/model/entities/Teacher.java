@@ -5,14 +5,14 @@ import java.util.List;
 @Entity
 @Table(name = "teacher")
 public class Teacher {
-    private int id;
+    private Integer id;
     private String name;
     private List<Student> students;
 
     public Teacher() {
     }
 
-    public Teacher(int id, String name, List<Student> students) {
+    public Teacher(Integer id, String name, List<Student> students) {
         this.id = id;
         this.name = name;
         this.students = students;
@@ -23,11 +23,11 @@ public class Teacher {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     @Column(name = "name")

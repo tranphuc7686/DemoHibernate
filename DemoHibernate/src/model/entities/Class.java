@@ -7,18 +7,21 @@ import java.util.List;
 @Table(name = "class")
 public class Class {
 
-    private int id;
-    private int total;
+    private Integer id;
+    private Integer total;
     private String name;
     private List<Student> students;
 
-    public Class(int total, String name, List<Student> students) {
+    public Class(Integer total, String name, List<Student> students) {
         this.total = total;
         this.name = name;
         this.students = students;
     }
 
-    @ManyToMany
+    public Class() {
+    }
+
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "classes_students",
         joinColumns = {@JoinColumn(name = "class_id")},
         inverseJoinColumns = {@JoinColumn(name = "student_id")}
@@ -36,20 +39,20 @@ public class Class {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Column(name = "total")
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
     @Column(name = "name")
@@ -60,4 +63,14 @@ public class Class {
     public void setName(String name) {
         this.name = name;
     }
+    @Override
+    public String toString() {
+        return "Class{" +
+                "id=" + id +
+                ", total=" + total +
+                ", name='" + name + '\'' +
+                ", students=" + students +
+                '}';
+    }
+
 }

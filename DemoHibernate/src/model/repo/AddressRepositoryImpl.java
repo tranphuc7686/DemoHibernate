@@ -3,11 +3,13 @@ package model.repo;
 import model.entities.Address;
 import ultis.GenericRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AddressRepositoryImpl extends GenericRepository<Address> implements AddressRepository {
-    public AddressRepositoryImpl(Class<Address> entityClass) {
-        super(entityClass);
+
+    public AddressRepositoryImpl() {
+        super(Address.class);
     }
 
     @Override
@@ -16,7 +18,12 @@ public class AddressRepositoryImpl extends GenericRepository<Address> implements
     }
 
     @Override
-    public void add(Address address) throws Exception {
+    public void add(Address address) {
         super.create(address);
+    }
+
+    @Override
+    public List<Address> getAll(){
+        return super.getAll();
     }
 }

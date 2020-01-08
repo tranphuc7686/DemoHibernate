@@ -6,19 +6,19 @@ import java.util.List;
 @Entity
 @Table(name = "student")
 public class Student {
-    private int id;
+    private Integer id;
     private String name;
-    private int gender;
-    private int idClass;
+    private Integer gender;
+    private Integer idClass;
     private List<Class> classes;
-    private int idAddress;
+    private Integer idAddress;
     private Address address;
-    private int idTeacher;
+    private Integer idTeacher;
     private Teacher teacher;
 
     public Student() {
     }
-    public Student( String name, int gender, int idClass, List<Class> classes, int idAddress, Address address, int idTeacher, Teacher teacher) {
+    public Student( String name, Integer gender, Integer idClass, List<Class> classes, Integer idAddress, Address address, Integer idTeacher, Teacher teacher) {
         this.name = name;
         this.gender = gender;
         this.idClass = idClass;
@@ -28,7 +28,7 @@ public class Student {
         this.idTeacher = idTeacher;
         this.teacher = teacher;
     }
-    public Student(int id, String name, int gender, int idClass, List<Class> classes, int idAddress, Address address, int idTeacher, Teacher teacher) {
+    public Student(Integer id, String name, Integer gender, Integer idClass, List<Class> classes, Integer idAddress, Address address, Integer idTeacher, Teacher teacher) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -43,11 +43,11 @@ public class Student {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,19 +60,19 @@ public class Student {
         this.name = name;
     }
     @Column(name = "gender")
-    public int getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
     @Column(name = "id_class")
-    public int getIdClass() {
+    public Integer getIdClass() {
         return idClass;
     }
 
-    public void setIdClass(int idClass) {
+    public void setIdClass(Integer idClass) {
         this.idClass = idClass;
     }
     @ManyToMany
@@ -89,11 +89,11 @@ public class Student {
         this.classes = classes;
     }
     @Column(name = "id_address")
-    public int getIdAddress() {
+    public Integer getIdAddress() {
         return idAddress;
     }
 
-    public void setIdAddress(int idAddress) {
+    public void setIdAddress(Integer idAddress) {
         this.idAddress = idAddress;
     }
     @OneToOne
@@ -106,11 +106,11 @@ public class Student {
         this.address = address;
     }
     @Column(name = "id_teacher")
-    public int getIdTeacher() {
+    public Integer getIdTeacher() {
         return idTeacher;
     }
 
-    public void setIdTeacher(int idTeacher) {
+    public void setIdTeacher(Integer idTeacher) {
         this.idTeacher = idTeacher;
     }
     @ManyToOne

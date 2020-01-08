@@ -8,7 +8,7 @@ public class EntityManagerHelper {
     private static ThreadLocal<EntityManager> threadLocal;
     static {
         entityManagerFactory = HibrenateHelper.getEntityManagerFactory();
-        threadLocal = new ThreadLocal<EntityManager>();
+        threadLocal = new ThreadLocal<>();
 
     }
     public static EntityManager getEntityManager(){
@@ -44,6 +44,7 @@ public class EntityManagerHelper {
             em.getTransaction().rollback();
         }
         em.close();
+        threadLocal.set(null);
     }
     public static void commitThenClose(){
         EntityManager em = threadLocal.get();
@@ -54,6 +55,7 @@ public class EntityManagerHelper {
             em.getTransaction().commit();
         }
         em.close();
+        threadLocal.set(null);
     }
 
 }

@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address")
 public class Address {
-    private int id;
+    private Integer id;
     private String streets;
 
     public Address(int id, String streets) {
@@ -16,13 +16,16 @@ public class Address {
         this.streets = streets;
     }
 
+    public Address() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     @Column(name = "streets")

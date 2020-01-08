@@ -23,7 +23,7 @@ public class GenericRepository<T> {
         this.criteriaBuilder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
     }
 
-    protected T getById(int id) throws Exception {
+    protected T getById(int id) {
 
         try {
             CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
@@ -41,7 +41,7 @@ public class GenericRepository<T> {
         }
     }
 
-    protected List<T> getAll() throws Exception {
+    protected List<T> getAll() {
         try {
             CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
             Root<T> root = criteriaQuery.from(entityClass);
@@ -57,7 +57,8 @@ public class GenericRepository<T> {
         }
     }
 
-    protected void create(T entity) throws Exception {
+    protected void create(T entity) {
+        EntityManagerHelper.beginTranstion();
         Timestamp time = new Timestamp(Calendar.getInstance().getTime().getTime());
         try {
 //            FieldUtils.writeDeclaredField(entity, updateAtTime, time, true);
@@ -67,19 +68,20 @@ public class GenericRepository<T> {
             EntityManagerHelper.rollBackThenClose();
             throw ex;
         } finally {
-            EntityManagerHelper.closeEntityManager();
+            EntityManagerHelper.commitThenClose();
         }
     }
-    protected void update(T entity) throws Exception {
+    protected void update(T entity) {
+        EntityManagerHelper.beginTranstion();
         Timestamp time = new Timestamp(Calendar.getInstance().getTime().getTime());
         try {
-            FieldUtils.writeDeclaredField(entity, updateAtTime, time, true);
+
             EntityManagerHelper.getEntityManager().merge(entity);
         } catch (Exception ex) {
             EntityManagerHelper.rollBackThenClose();
             throw ex;
         } finally {
-            EntityManagerHelper.closeEntityManager();
+            EntityManagerHelper.commitThenClose();
         }
     }
 }
