@@ -1,3 +1,5 @@
+package ultis;
+
 import org.apache.commons.lang3.reflect.FieldUtils;
 import ultis.EntityManagerHelper;
 
@@ -58,8 +60,8 @@ public class GenericRepository<T> {
     protected void create(T entity) throws Exception {
         Timestamp time = new Timestamp(Calendar.getInstance().getTime().getTime());
         try {
-            FieldUtils.writeDeclaredField(entity, updateAtTime, time, true);
-            FieldUtils.writeDeclaredField(entity, createAtTime, time, true);
+//            FieldUtils.writeDeclaredField(entity, updateAtTime, time, true);
+//            FieldUtils.writeDeclaredField(entity, createAtTime, time, true);
             EntityManagerHelper.getEntityManager().persist(entity);
         } catch (Exception ex) {
             EntityManagerHelper.rollBackThenClose();

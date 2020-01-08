@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import javax.persistence.*;
 import java.util.List;
@@ -97,7 +97,7 @@ public class Student {
         this.idAddress = idAddress;
     }
     @OneToOne
-    @JoinColumn(name = "id_address")
+    @JoinColumn(name = "id_address", insertable=false, updatable=false)
     public Address getAddress() {
         return address;
     }
@@ -114,7 +114,7 @@ public class Student {
         this.idTeacher = idTeacher;
     }
     @ManyToOne
-    @JoinColumn(name = "id_teacher", referencedColumnName = "id")
+    @JoinColumn(name = "id_teacher", referencedColumnName = "id", insertable=false, updatable=false)
     public Teacher getTeacher() {
         return teacher;
     }
